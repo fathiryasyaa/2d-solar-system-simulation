@@ -1,91 +1,91 @@
-# 2D Solar System Simulation
+# Simulasi Tata Surya 2D
 
-An interactive 2D solar system simulation built with Python and Pygame, made as a college assignment for the **2D Geometric Transformation** topic in Computer Graphics.
+Simulasi tata surya 2D interaktif yang dibuat dengan Python dan Pygame sebagai tugas kuliah untuk topik **Transformasi Geometri 2D** pada Grafika Komputer.
 
-The program implements Rotation, Translation, and Scaling transformations from scratch — no physics libraries, no animation engines. Everything is done manually with math.
+Program ini mengimplementasikan transformasi Rotasi, Translasi, dan Skala dari awal—tanpa pustaka fisika atau mesin animasi. Semua proses dilakukan secara manual menggunakan matematika.
 
-> **Kelompok 3 — Tugas Grafika Komputer: Transformasi Geometri 2D**
-
----
-
-## Features
-
-- 8 planets with manual scanline textures and day/night shading
-- Saturn rings, Earth's moon, Jupiter's Great Red Spot
-- 200 asteroid belt particles
-- Halley's Comet with Keplerian orbit and particle tail
-- Pulsing sun (sine-based scaling)
-- Meteor launcher with 4 size options and realistic slingshot mechanics
-- Planet destruction system based on planet hardness vs meteor mass
-- Click a planet to see its details (gravity, diameter, orbital period, etc.)
-- Camera pan, zoom, and follow mode
-- Coordinate grid, orbit trails, gravity field lines visualization
-- HUD panel showing live transformation matrix values (θ, cos, sin, x', y')
-- Keyboard shortcut guide overlay (press F1 or click the button)
-- Sound effects (synthesized, no external audio files needed)
+> **Kelompok 3—Tugas Grafika Komputer: Transformasi Geometri 2D**
 
 ---
 
-## How It Works
+## Fitur
 
-The core of the simulation is built on three 2D geometric transformations:
+- 8 planet dengan tekstur scanline manual dan bayangan siang/malam
+- Cincin Saturnus, Bulan milik Bumi, dan Bintik Merah Besar Jupiter
+- 200 partikel sabuk asteroid
+- Komet Halley dengan orbit Kepler dan ekor partikel
+- Matahari berdenyut dengan penskalaan berbasis fungsi sinus
+- Peluncur meteor dengan 4 pilihan ukuran dan mekanisme ketapel yang realistis
+- Sistem penghancuran planet berdasarkan tingkat kekerasan planet dan massa meteor
+- Klik planet untuk melihat detailnya (gravitasi, diameter, periode orbit, dan lainnya)
+- Panning kamera, zoom, dan mode mengikuti planet
+- Visualisasi grid koordinat, jejak orbit, dan garis medan gravitasi
+- Panel HUD yang menampilkan nilai matriks transformasi secara langsung (θ, cos, sin, x', y')
+- Panduan pintasan keyboard (tekan F1 atau klik tombolnya)
+- Efek suara sintetis tanpa memerlukan berkas audio eksternal
 
-### Rotation
-Used for planet revolution around the sun and the moon around Earth.
+---
+
+## Cara Kerja
+
+Inti simulasi ini dibangun menggunakan tiga transformasi geometri 2D:
+
+### Rotasi
+Digunakan untuk peredaran planet mengelilingi Matahari dan Bulan mengelilingi Bumi.
 
 $$x' = R \cdot \cos(\theta), \quad y' = R \cdot \sin(\theta)$$
 
-Each frame, the angle is updated by:
+Pada setiap frame, sudut diperbarui dengan rumus:
 
 $$\theta = \theta + (\text{speed} \times \Delta t)$$
 
-### Translation
-Used for camera panning and follow mode.
+### Translasi
+Digunakan untuk panning kamera dan mode mengikuti planet.
 
 $$x' = x + dx, \quad y' = y + dy$$
 
-The moon's position is a translation offset from Earth's current position.
+Posisi Bulan merupakan offset translasi dari posisi Bumi saat ini.
 
-### Scaling
-Used for zoom and the pulsing sun effect.
+### Skala
+Digunakan untuk zoom dan efek denyut Matahari.
 
 $$x' = x \cdot s, \quad y' = y \cdot s$$
 
-The sun's pulse uses:
+Denyut Matahari menggunakan rumus:
 
 $$s_{\text{pulse}} = 1.0 + 0.06 \cdot \sin(t \cdot 1.5)$$
 
-### World to Screen
-All world coordinates are converted to screen pixels with:
+### Dunia ke Layar
+Semua koordinat dunia dikonversi menjadi piksel layar dengan rumus:
 
 $$x_{\text{screen}} = \text{cam\_x} + (x_{\text{world}} \times s)$$
 
 ---
 
-## Requirements
+## Persyaratan
 
-- Python 3.8 or higher (tested on Python 3.10)
+- Python 3.8 atau lebih baru (diuji pada Python 3.10)
 - pygame 2.x
 - Windows / macOS / Linux
 
 ---
 
-## Installation & Running
+## Instalasi dan Menjalankan Program
 
-### 1. Clone the repository
+### 1. Kloning repository
 
 ```bash
 git clone https://github.com/fathiryasyaa/2d-solar-system-simulation.git
 cd 2d-solar-system-simulation
 ```
 
-### 2. Create a virtual environment
+### 2. Membuat virtual environment
 
 ```bash
 python -m venv venv
 ```
 
-### 3. Install dependencies
+### 3. Memasang dependensi
 
 **Windows (PowerShell):**
 ```powershell
@@ -102,12 +102,12 @@ venv\Scripts\pip install pygame
 ./venv/bin/pip install pygame
 ```
 
-Or just use the requirements file:
+Atau gunakan berkas requirements:
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Run the program
+### 4. Menjalankan program
 
 **Windows:**
 ```powershell
@@ -121,60 +121,60 @@ pip install -r requirements.txt
 
 ---
 
-## Controls
+## Kontrol
 
-| Input | Action |
+| Input | Aksi |
 |-------|--------|
-| Scroll up / down | Zoom in / out |
-| Left click + drag | Pan camera |
-| Left click on planet | Select planet (shows info card) |
-| Right click + drag back | Slingshot a meteor |
-| `1` / `2` / `3` / `4` | Select meteor size (Small / Medium / Large / Giant) |
-| `SPACE` | Pause / Resume |
-| `→` (Right arrow) | Step 1 frame (while paused) |
-| `S` | Toggle slow-motion (0.05x) |
-| `F` | Follow selected planet |
-| `[` / `]` | Decrease / Increase orbit speed |
-| `O` | Toggle orbit lines |
-| `L` | Toggle planet labels |
-| `G` | Toggle coordinate grid |
-| `T` | Toggle orbit trails |
-| `V` | Toggle gravity field lines |
-| `H` | Hide / show side panel |
-| `R` | Reset camera, planets, and meteors |
-| `F1` | Open / close keyboard shortcut guide |
-| `ESC` | Quit |
+| Gulir ke atas / bawah | Perbesar / perkecil tampilan |
+| Klik kiri + tarik | Geser kamera |
+| Klik kiri pada planet | Pilih planet (menampilkan kartu informasi) |
+| Klik kanan + tarik ke belakang | Meluncurkan meteor dengan ketapel |
+| `1` / `2` / `3` / `4` | Memilih ukuran meteor (Kecil / Sedang / Besar / Raksasa) |
+| `SPACE` | Jeda / lanjutkan simulasi |
+| `→` (Panah kanan) | Maju 1 frame (saat dijeda) |
+| `S` | Mengaktifkan/nonaktifkan gerak lambat (0.05x) |
+| `F` | Mengikuti planet yang dipilih |
+| `[` / `]` | Mengurangi / menambah kecepatan orbit |
+| `O` | Menampilkan/menyembunyikan garis orbit |
+| `L` | Menampilkan/menyembunyikan label planet |
+| `G` | Menampilkan/menyembunyikan grid koordinat |
+| `T` | Menampilkan/menyembunyikan jejak orbit |
+| `V` | Menampilkan/menyembunyikan garis medan gravitasi |
+| `H` | Menyembunyikan/menampilkan panel samping |
+| `R` | Mengatur ulang kamera, planet, dan meteor |
+| `F1` | Membuka/menutup panduan pintasan keyboard |
+| `ESC` | Keluar |
 
 ---
 
-## Meteor System
+## Sistem Meteor
 
-Meteors are launched by holding right click and dragging backward (slingshot), then releasing. A yellow dotted preview line shows the predicted trajectory.
+Meteor diluncurkan dengan menahan klik kanan lalu menarik ke belakang, kemudian melepaskannya. Garis putus-putus kuning menampilkan perkiraan lintasan.
 
-There are 4 meteor sizes:
+Tersedia 4 ukuran meteor:
 
-| Size | Mass | Effect |
+| Ukuran | Massa | Efek |
 |------|------|--------|
-| Small | 3 | Sparks on impact, never destroys |
-| Medium | 20 | Can destroy small rocky planets |
-| Large | 60 | Can destroy ice/mid-size planets |
-| Giant | 200 | Can destroy gas giants |
+| Kecil | 3 | Menghasilkan percikan saat menabrak, tidak pernah menghancurkan planet |
+| Sedang | 20 | Dapat menghancurkan planet batuan kecil |
+| Besar | 60 | Dapat menghancurkan planet es atau berukuran sedang |
+| Raksasa | 200 | Dapat menghancurkan planet raksasa gas |
 
-Whether a planet gets destroyed depends on the planet's hardness value compared to the meteor's mass. Press **R** to reset all meteors and restore destroyed planets.
+Planet akan hancur atau tidak berdasarkan perbandingan nilai kekerasan planet dengan massa meteor. Tekan **R** untuk mengatur ulang semua meteor dan memulihkan planet yang hancur.
 
 ---
 
-## Project Structure
+## Struktur Project
 
 ```
 .
-├── tata_surya.py     # main program
-├── requirements.txt  # dependencies
+├── tata_surya.py     # program utama
+├── requirements.txt  # dependensi
 └── README.md
 ```
 
 ---
 
-## Notes
+## Catatan
 
-This project was made purely for learning purposes as part of a Computer Graphics course. All transformations are implemented manually without any physics or animation libraries.
+Project ini dibuat khusus untuk pembelajaran sebagai bagian dari mata kuliah Grafika Komputer. Semua transformasi diimplementasikan secara manual tanpa pustaka fisika atau animasi.
