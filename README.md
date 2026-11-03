@@ -58,7 +58,7 @@ $$s_{\text{pulse}} = 1.0 + 0.06 \cdot \sin(t \cdot 1.5)$$
 ### Dunia ke Layar
 Semua koordinat dunia dikonversi menjadi piksel layar dengan rumus:
 
-$$x_{\text{screen}} = \text{cam\_x} + (x_{\text{world}} \times s)$$
+$$x_{\text{screen}} = \text{cam}_x + (x_{\text{world}} \times s)$$
 
 ---
 
