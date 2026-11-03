@@ -141,7 +141,7 @@ pip install -r requirements.txt
 | `T` | Toggle orbit trails |
 | `V` | Toggle gravity field lines |
 | `H` | Hide / show side panel |
-| `R` | Reset everything (planets, meteors, camera) |
+| `R` | Reset camera, planets, and meteors |
 | `F1` | Open / close keyboard shortcut guide |
 | `ESC` | Quit |
 
@@ -170,7 +170,6 @@ Whether a planet gets destroyed depends on the planet's hardness value compared 
 .
 ├── tata_surya.py     # main program
 ├── requirements.txt  # dependencies
-├── run.bat           # quick launch script (Windows)
 └── README.md
 ```
 
